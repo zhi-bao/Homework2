@@ -95,6 +95,6 @@ def find_path_exhaustive(start_token, amount):
 if __name__ == "__main__":
     start_token = "tokenB"
     # Greedy mehtod
-    # path , balance =find_path_greedy("tokenB", 5)
+    path , balance =find_path_greedy("tokenB", 5)
     # exhaustive method
-    find_path_exhaustive(start_token, 5)
+    # find_path_exhaustive(start_token, 5)
