@@ -7,6 +7,12 @@ Provide your profitable path, the amountIn, amountOut value for each swap, and y
 
 > Solution
 ```
+Each Swap
+tokenB->tokenA, amountIn=5.000000 , amountOut=5.655322
+tokenA->tokenD, amountIn=5.655322 , amountOut=2.458781
+tokenD->tokenC, amountIn=2.458781 , amountOut=5.088927
+tokenC->tokenB, amountIn=5.088927 , amountOut=20.129889
+Final Path and balance
 tokenB->tokenA->tokenD->tokenC->tokenB, tokenB balance=20.129889
 ```
 
@@ -24,13 +30,15 @@ In Uniswap V2's Router 02 contract, when using functions like swapTokensForExact
 
 The slippage tolerance is indirectly controlled by setting the appropriate amountInMax value. This value determines how much slippage (price impact) you are willing to accept during the trade. The higher the amountInMax, the more slippage you might encounter, but it also increases the likelihood of your trade getting executed successfully, especially in volatile markets.
 
-Here's a brief explanation of the parameters in the swapTokensForExactTokens function:
+Here's a brief explanation of the parameters in the **swapTokensForExactTokens** function:
 
-amountOut: The exact amount of output tokens (token B) you want to receive in the trade.
-amountInMax: The maximum amount of input tokens (token A) you are willing to provide for the trade, considering slippage.
-path: An array specifying the token swap path, e.g., [tokenA, tokenB].
-to: The address that will receive the output tokens.
+* amountOut: The exact amount of output tokens (token B) you want to receive in the trade.
+* amountInMax: The maximum amount of input tokens (token A) you are willing to provide for the trade, considering slippage.
+* path: An array specifying the token swap path, e.g., [tokenA, tokenB].
+
+* to: The address that will receive the output tokens.
 deadline: The timestamp by which the transaction must be executed, after which it expires.
+
 By adjusting the amountInMax parameter, you can control the slippage tolerance programmatically when executing a swap transaction using the Uniswap V2 Router 02 contract.
 
 

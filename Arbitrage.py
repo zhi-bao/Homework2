@@ -58,11 +58,16 @@ def find_path_greedy(startToken, amount):
 
 def cal_path_amountOut(path, amountIn):
     balance = amountIn
+    # print("Each Swap")
     for token_idx in range(1, len(path)):
         token_from, token_to = path[token_idx-1], path[token_idx]
         token_address, token_indices = sort_token(token_from, token_to)
         liquidity_with_address = liquidity[token_address]
+        amountIn=balance
         balance = getAmount(balance, liquidity_with_address[1-token_indices], liquidity_with_address[token_indices])
+        # print("{}->{}, amountIn={:.6f} , amountOut={:.6f}".format(token_from, token_to, amountIn ,balance))
+    # print("Final Path and balance")
+    # print("{}, tokenB balance={:.6f}".format("->".join(path), balance))
     return balance
 
 def find_all_path(start_token):
@@ -95,6 +100,7 @@ def find_path_exhaustive(start_token, amount):
 if __name__ == "__main__":
     start_token = "tokenB"
     # Greedy mehtod
-    path , balance =find_path_greedy("tokenB", 5)
+    path , balance = find_path_greedy("tokenB", 5)
     # exhaustive method
     # find_path_exhaustive(start_token, 5)
+    # cal_path_amountOut(path, 5)
