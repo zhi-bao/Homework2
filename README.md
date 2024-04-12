@@ -61,19 +61,18 @@ Overall, the intention behind using a specific formula, such as the constant pro
 What is a sandwich attack, and how might it impact you when initiating a swap?
 
 > Solution
+A sandwich attack is a type of front-running attack commonly seen in decentralized finance (DeFi) platforms, particularly in automated market maker (AMM) protocols like Uniswap. In a sandwich attack, a malicious actor exploits the predictability of blockchain transactions to manipulate the price of an asset during a swap.
 
-A sandwich attack is a type of manipulation tactic commonly observed in decentralized exchanges (DEXs), particularly in Automated Market Maker (AMM) platforms like Uniswap. In a sandwich attack, an attacker exploits the predictable price movement caused by a large trade to profit at the expense of other traders.
+Here's how a sandwich attack typically unfolds:
 
-Here's how a sandwich attack typically works and how it might impact you when initiating a swap:
+1. **Observation**: The attacker monitors the mempool (the pool of unconfirmed transactions) for pending transactions involving a specific token pair.
 
-1. **Identifying a Vulnerable Transaction:** The attacker monitors the blockchain for pending transactions, particularly large trades that are about to be executed on a DEX.
+2. **Front-Running**: When they identify a large buy or sell order about to be executed, the attacker quickly submits their own transactions to the mempool.
 
-2. **Front-Running the Transaction:** The attacker quickly submits their own transactions to the DEX, both before and after the target transaction. By doing so, they effectively sandwich the target transaction between their own trades.
+3. **Sandwich**: The attacker's transactions are strategically placed before and after the target transaction. The initial transaction is typically designed to influence the price in a favorable direction for the attacker, while the subsequent transaction is used to capitalize on the changed price.
 
-3. **Impact on Swap Initiators:** If you're initiating a swap that becomes sandwiched between the attacker's transactions, it can result in you receiving a less favorable exchange rate than you anticipated. This is because the price of the asset you're trading can be artificially manipulated due to the large trades executed by the attacker.
+4. **Profit**: By executing trades at manipulated prices, the attacker can profit from the price movement caused by their own transactions, often at the expense of the original trader.
 
-4. **Profit for the Attacker:** The attacker profits from the price movement caused by their own trades and the large target transaction. They may sell their assets at an inflated price before the target transaction pushes the price back down, or they may buy assets at a discounted price before the price rebounds.
-
-5. **Increased Slippage:** Sandwich attacks can also lead to increased slippage for the victim trader, as the price impact of the large trades can cause the execution price to deviate significantly from the expected price.
-
-To mitigate the impact of sandwich attacks, traders can use various strategies such as using limit orders instead of market orders, using decentralized exchanges with anti-front-running measures, or using DEX aggregators that offer protection against such attacks. Additionally, developers of DEX platforms continue to explore and implement solutions to mitigate the risks associated with sandwich attacks.
+Impact:
+- **Slippage**: The presence of sandwich attacks can lead to increased slippage for traders, meaning they may receive less of their desired token or pay more than expected due to the manipulated price.
+- **Finaical Losses**: Initiating swaps may suffer financial losses if their transactions are sandwiched between those of the attacker, especially if they are unaware of the manipulation.
