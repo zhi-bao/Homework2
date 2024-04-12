@@ -32,19 +32,9 @@ Please examine the mint function in the UniswapV2Pair contract. Upon initial liq
 
 > Solution
 
-In Uniswap V2, the `mint` function is responsible for adding liquidity to a liquidity pool. When liquidity is initially minted, a minimum liquidity amount is subtracted. The rationale behind this design is to prevent extremely small liquidity additions that could be considered negligible or "dust," while also ensuring the stability and efficiency of the liquidity pool.
+The rationale behind subtracting a minimum liquidity amount upon initial minting in the mint function of the UniswapV2Pair contract is to address the first minter problem and defend against **the inflation attack**. This attack vector involves malicious actors attempting to manipulate the price by owning the entire supply of LP (Liquidity Provider) tokens.
 
-Here's a brief overview of the mint function in the UniswapV2Pair contract and the rationale behind subtracting a minimum liquidity:
-
-1. **Liquidity Threshold:** Uniswap V2 sets a minimum liquidity threshold to ensure that liquidity providers contribute a meaningful amount of liquidity to the pool. This helps prevent extremely small liquidity additions that may not have a significant impact on the pool's efficiency or trading experience.
-
-2. **Stability and Efficiency:** By requiring a minimum liquidity amount, Uniswap V2 aims to maintain stability and efficiency in the liquidity pool. Insufficient liquidity can lead to increased slippage and price volatility, negatively impacting traders. Setting a minimum liquidity threshold helps ensure that the pool has sufficient depth to accommodate trades without significant price impact.
-
-3. **Gas Optimization:** Handling small liquidity additions can be inefficient in terms of gas costs. By setting a minimum liquidity requirement, Uniswap V2 reduces the frequency of small transactions, which can help optimize gas usage and reduce congestion on the Ethereum network.
-
-4. **Incentivizing Participation:** Requiring a minimum liquidity contribution incentivizes liquidity providers to commit a meaningful stake to the pool. This aligns their incentives with the long-term health and stability of the liquidity pool, as providers are more likely to contribute when they have a substantial investment at stake.
-
-Overall, the design of subtracting a minimum liquidity amount upon initial minting in Uniswap V2 aims to promote stability, efficiency, and meaningful participation in liquidity provision, while also optimizing gas usage and network resources.
+To prevent this, Uniswap V2 employs a defense mechanism by burning a portion of the initial liquidity tokens (MINIMUM_LIQUIDITY tokens) during the minting process. By doing so, it ensures that no single entity can monopolize the LP token supply, thereby safeguarding against potential price manipulation.
 
 ## Problem 4
 Investigate the minting function in the UniswapV2Pair contract. When depositing tokens (not for the first time), liquidity can only be obtained using a specific formula. What is the intention behind this?
