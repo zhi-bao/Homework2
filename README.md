@@ -3,6 +3,9 @@
 Please complete the report problem below:
 
 ## Problem 1
+
+
+
 Provide your profitable path, the amountIn, amountOut value for each swap, and your final reward (your tokenB balance).
 
 > Solution
